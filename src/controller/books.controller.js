@@ -39,20 +39,34 @@ const createBook = async (req, res) => {
 
 const updateBook = async (req, res) => {
     try {
-        const {id} = req.params
+        const { id } = req.params
         const { title, autor, pageQuantity } = req.body;
         const updateBook = bookService.updateBook(id, title, autor, pageQuantity)
         if (!updateBook) return res.status(404).json({ message: NOT_BOOK_ERROR });
-        return res.status(200).json({ message: 'Livro atualizado com sucesso'})
+        return res.status(200).json({ message: 'Livro atualizado com sucesso' })
     } catch (e) {
         console.log(`erro log: ${e.message}`);
-     return   res.status(500).json({ message: ERROR_MESSAGE })
+        return res.status(500).json({ message: ERROR_MESSAGE })
     }
-}
+};
+
+const deleteBook = async (req, res) => {
+    try {
+      const { id } = req.params;
+      await bookService.deleteBook(id);
+  
+      return res.status(200).json({ message: 'Livro excluído com sucesso!' });
+    } catch (e) {
+      console.log(e.message);
+      res.status(500).json({ message: ERROR_MESSAGE });
+    }
+  };
+  
 
 module.exports = {
     getAll,
     getById,
     createBook,
-    updateBook
+    updateBook,
+    deleteBook
 }

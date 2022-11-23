@@ -12,7 +12,7 @@ describe('O model de User', () => {
         checkModelName(User)('Book');
     });
 
-    describe('Possui as propriedades "title", "author" e "pageQuantity" ', () => {
-        ['title', 'author', 'pageQuantity'].forEach(checkPropertyExists(user))
+    describe('Possui as propriedades "title", "autor" e "pageQuantity" ', () => {
+        ['title', 'autor', 'pageQuantity'].forEach(checkPropertyExists(user))
     })
 })
