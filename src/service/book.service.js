@@ -16,9 +16,19 @@ const createBook = async ( title, autor, pageQuantity) => {
 
 }
 
+const updateBook = async (id,  title, autor, pageQuantity) => {
+    const [updatedBook] = await Book.update(
+        {  title, autor, pageQuantity },
+        { where: { id } },
+    );
+    return updatedBook;
+};
+
+
 
 module.exports = {
     getAll,
     getById,
-    createBook
+    createBook,
+    updateBook
 }
